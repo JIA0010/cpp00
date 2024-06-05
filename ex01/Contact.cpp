@@ -9,14 +9,27 @@ Contact::Contact()
 	darkestsecret = "";
 }
 
-void Contact::check_info()
+std::string Contact::get_firstname()
 {
-	std::cout << std::endl;
-	std::cout << firstname << std::endl;
-	std::cout << lastname << std::endl;
-	std::cout << nickname << std::endl;
-	std::cout << phonenumber << std::endl;
-	std::cout << darkestsecret << std::endl;
+	return firstname;
+}
 
-	// if(firstname == "" || lastname == "")
+std::string Contact::get_lastname()
+{
+	return lastname;
+}
+
+std::string Contact::get_nickname()
+{
+	return nickname;
+}
+
+std::string Contact::get_phonenumber()
+{
+	return phonenumber;
+}
+
+std::string Contact::get_darkestsecret()
+{
+	return darkestsecret;
 }

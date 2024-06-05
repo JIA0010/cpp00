@@ -20,6 +20,8 @@ class	Contact
 	std::string get_firstname();
 	std::string get_lastname();
 	std::string get_nickname();
+	std::string get_phonenumber();
+	std::string get_darkestsecret();
 };
 
 #endif

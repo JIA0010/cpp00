@@ -19,17 +19,35 @@ bool check_print(std::string str)
 	{
 		ch = str[i];
 		if(isprint(ch) == 0)
-		{
-			std::cout << "test" << std::endl;
 			return(false);
-		}
 	}
 
 	return true;
 }
 
+bool check_space(std::string str)
+{
+	int i = 0;
+	if(str.empty())
+	{
+		std::cout << "Please enter again" << std::endl;
+		return false;
+	}
+	while(str[i] != '\0')
+	{
+		if(str[i] == 0 || str[i] == 32 || str[i] == 9 || str[i] == 10 || str[i] == 11 || str[i] == 12 || str[i] == 13)
+		{
+			std::cout << "Please enter again" << std::endl;
+			return false;
+		}
+		i++;
+	}
+	return true;
+}
+
 bool Contact:: input_info(int i)
 {
+	int j = 0;
 	std::string tmp;
 	while(true)
 	{
@@ -37,10 +55,9 @@ bool Contact:: input_info(int i)
 		std::getline(std::cin, tmp);
 		if (std::cin.eof() || std::cin.fail() || check_print(tmp) == false)
 			error_mes();
-		if(tmp == "" || tmp == " " || tmp == "\t" || tmp == "\n" || tmp == "\v" || tmp == "\f" || tmp == "\r")
-			std::cout << "Please enter again" << std::endl;
-		else
-			break;
+		if(check_space(tmp) == false)
+			continue;
+		break;
 	}
 	if(i == FIRST_NAME)
 		firstname = tmp;
@@ -84,23 +101,28 @@ void PhoneBook::add()
 	contact_num++;
 }
 
-std::string Contact::get_firstname()
+int	string_to_int(const std::string str)
 {
-	return firstname;
+	int	result;
+
+	std::istringstream tmp(str);
+	if (!(tmp >> result))
+		return (-1);
+	return (result);
 }
 
-std::string Contact::get_lastname()
+std::string change_length(std::string str)
 {
-	return lastname;
+	if (str.length() < 10)
+		return (str);
+	else
+		return (str.substr(0, 9) + ".");
 }
 
-std::string Contact::get_nickname()
-{
-	return nickname;
-}
 
 void PhoneBook::search()
 {
+	std::string tmp;
 	if (contact_size == 0)
 	{
 		std::cout << "There is no contact" << std::endl;
@@ -111,10 +133,32 @@ void PhoneBook::search()
 	for (int i = 0; i < contact_size; i++)
 	{
 		std::cout << std::right << std::setw(10) << i << "|";
-		std::cout << std::right << std::setw(10) << contact[i].get_firstname() << "|";
-		std::cout << std::right << std::setw(10) << contact[i].get_lastname() << "|";
-		std::cout << std::right << std::setw(10) << contact[i].get_nickname() << std::endl;
+		std::cout << std::right << std::setw(10) << change_length(contact[i].get_firstname()) << "|";
+		std::cout << std::right << std::setw(10) << change_length(contact[i].get_lastname()) << "|";
+		std::cout << std::right << std::setw(10) << change_length(contact[i].get_nickname()) << std::endl;
 	}
 	std::cout << "-------------------------------------------" << std::endl;
 
+	while(true)
+	{
+		std::cout << "Enter index" << std::endl;
+		std::cin >> tmp;
+		if(tmp[0] >= '0' && tmp[0] < contact_size + ASCII_NUM && tmp.substr(1, 1).empty() && check_print(tmp) == true)
+			break;
+		else
+			continue;
+	}
+	std::cout << "First name: " << contact[string_to_int(tmp)].get_firstname() << std::endl;
+	std::cout << "Last name: " << contact[string_to_int(tmp)].get_lastname() << std::endl;
+	std::cout << "Nick name: " << contact[string_to_int(tmp)].get_nickname() << std::endl;
+	std::cout << "Phone number: " << contact[string_to_int(tmp)].get_phonenumber() << std::endl;
+	std::cout << "Darkest secret: " << contact[string_to_int(tmp)].get_darkestsecret() << std::endl;
 }
+
+
+//issとは。→自作のstoi関数
+/*
+std::string をint に変換したい。
+std::input string stream を追えばいい
+std::istringstream iss(str);でissでstrを受け取る。iss = strと同じ
+*/

@@ -3,6 +3,8 @@
 
 # include <iostream>
 #include <iomanip>
+#include <cctype>
+#include <sstream>
 #include "Contact.hpp"
 
 #define MAX_NUM 8
@@ -11,6 +13,7 @@
 #define NICK_NAME 2
 #define PHONE_NUM 3
 #define DARKEST_SECRET 4
+#define ASCII_NUM 48
 
 
 class PhoneBook
@@ -27,6 +30,6 @@ class PhoneBook
 
 void error_mes();
 bool check_print(std::string tmp);
-
+int	string_to_int(const std::string str);
 
 #endif
