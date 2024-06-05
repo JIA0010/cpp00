@@ -29,6 +29,3 @@ int	main(int argc, char **argv)
 			exit(0);
 	}
 }
-
-
-//あと十文字超えた場合だけ

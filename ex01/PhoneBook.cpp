@@ -142,7 +142,7 @@ void PhoneBook::search()
 	while(true)
 	{
 		std::cout << "Enter index" << std::endl;
-		std::cin >> tmp;
+		std::getline(std::cin, tmp);
 		if(tmp[0] >= '0' && tmp[0] < contact_size + ASCII_NUM && tmp.substr(1, 1).empty() && check_print(tmp) == true)
 			break;
 		else
