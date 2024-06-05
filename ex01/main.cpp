@@ -16,8 +16,6 @@ int	main(int argc, char **argv)
 	while (true)
 	{
 		std::cout << "cmd >";
-		// if(!cmd.empty() && cmd != "ADD" && cmd != "SEARCH" && cmd != "EXIT")
-		// 	cmd.clear();
 		std::getline(std::cin, cmd);
 		if (std::cin.eof() || std::cin.fail() || check_print(cmd) == false)
 			error_mes();

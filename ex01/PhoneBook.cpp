@@ -35,14 +35,12 @@ bool check_space(std::string str)
 	}
 	while(str[i] != '\0')
 	{
-		if(str[i] == 0 || str[i] == 32 || str[i] == 9 || str[i] == 10 || str[i] == 11 || str[i] == 12 || str[i] == 13)
-		{
-			std::cout << "Please enter again" << std::endl;
-			return false;
-		}
+		if(!(str[i] == 0 || str[i] == 32 || str[i] == 9 || str[i] == 10 || str[i] == 11 || str[i] == 12 || str[i] == 13))
+			return (true);
 		i++;
 	}
-	return true;
+	std::cout << "Please enter again" << std::endl;
+		return (false);
 }
 
 bool Contact:: input_info(int i)
@@ -75,26 +73,20 @@ bool Contact:: input_info(int i)
 
 void PhoneBook::add()
 {
-	if (contact_num >= MAX_NUM)
+	contact_num = contact_num % 8;
+	for (int i = 0; i < 5; i++)
 	{
-		contact_num = contact_num % 8;
-	}
-	else
-	{
-		for (int i = 0; i < 5; i++)
-		{
-			if (i == FIRST_NAME)
-				std::cout << "----enter first name----" << std::endl;
-			if (i == LAST_NAME)
-				std::cout << "----enter last name----" << std::endl;
-			if (i == NICK_NAME)
-				std::cout << "----enter nickname----" << std::endl;
-			if (i == PHONE_NUM)
-				std::cout << "----enter phone number----" << std::endl;
-			if (i == DARKEST_SECRET)
-				std::cout << "----enter darkest secret----" << std::endl;
-			contact[contact_num].input_info(i);
-		}
+		if (i == FIRST_NAME)
+			std::cout << "----enter first name----" << std::endl;
+		if (i == LAST_NAME)
+			std::cout << "----enter last name----" << std::endl;
+		if (i == NICK_NAME)
+			std::cout << "----enter nickname----" << std::endl;
+		if (i == PHONE_NUM)
+			std::cout << "----enter phone number----" << std::endl;
+		if (i == DARKEST_SECRET)
+			std::cout << "----enter darkest secret----" << std::endl;
+		contact[contact_num].input_info(i);
 	}
 	if(contact_size < 8)
 		contact_size++;
