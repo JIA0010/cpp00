@@ -5,6 +5,7 @@
 int	main(int argc, char **argv)
 {
 	PhoneBook	phonebook;
+	Contact contact;
 
 	std::string cmd;
 	if (argc != 1)
@@ -17,13 +18,16 @@ int	main(int argc, char **argv)
 		std::cout << "cmd >";
 		// std::cin >> cmd;
 		std::getline(std::cin, cmd);
+		if (std::cin.eof() || std::cin.fail() || check_print(cmd) == false)
+			error_mes();
 		if (std::cin.eof())
 			exit(0);
 		if (cmd == "ADD")
 		{
 			phonebook.add();
+			// contact.check_info();
 		}
-		else if (cmd == "SREACH")
+		else if (cmd == "SEARCH")
 		{
 			phonebook.search();
 		}

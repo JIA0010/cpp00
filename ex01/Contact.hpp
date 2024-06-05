@@ -15,6 +15,11 @@ class	Contact
 
 	public:
 	Contact();
+	bool input_info(int i);
+	void check_info();
+	std::string get_firstname();
+	std::string get_lastname();
+	std::string get_nickname();
 };
 
 #endif
