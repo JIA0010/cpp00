@@ -24,6 +24,6 @@ int	main(int argc, char **argv)
 		else if (cmd == "SEARCH")
 			phonebook.search();
 		else if (cmd == "EXIT")
-			exit(0);
+			std::exit(0);
 	}
 }

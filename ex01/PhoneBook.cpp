@@ -64,7 +64,7 @@ bool Contact:: input_info(int i)
 	if(i == NICK_NAME)
 		nickname = tmp;
 	if(i == PHONE_NUM)
-		phonenumber = tmp;
+		phonenumber = tmp;/////数字のみにする
 	if(i == DARKEST_SECRET)
 		darkestsecret = tmp;
 	return true;
