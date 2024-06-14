@@ -22,6 +22,7 @@ class PhoneBook
 	int contact_num;
 	int contact_size;
 	Contact contact[8];
+	int	string_to_int(const std::string str);
   public:
 	PhoneBook();
 	void add();
@@ -30,6 +31,5 @@ class PhoneBook
 
 void error_mes();
 bool check_print(std::string tmp);
-int	string_to_int(const std::string str);
 
 #endif

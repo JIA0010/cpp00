@@ -93,7 +93,7 @@ void PhoneBook::add()
 	contact_num++;
 }
 
-int	string_to_int(const std::string str)
+int	PhoneBook::string_to_int(const std::string str)
 {
 	int	result;
 

@@ -5,7 +5,6 @@
 int	main(int argc, char **argv)
 {
 	PhoneBook	phonebook;
-	Contact contact;
 
 	std::string cmd;
 	if (argc != 1)
@@ -27,3 +26,6 @@ int	main(int argc, char **argv)
 			std::exit(0);
 	}
 }
+
+
+//ctrl＋Dでerrorではなく、exitと同じ処理で落とす
