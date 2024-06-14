@@ -35,7 +35,7 @@ bool check_space(std::string str)
 	}
 	while(str[i] != '\0')
 	{
-		if(!(str[i] == 0 || str[i] == 32 || str[i] == 9 || str[i] == 10 || str[i] == 11 || str[i] == 12 || str[i] == 13))
+		if(!(str[i] == 0 || str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
 			return (true);
 		i++;
 	}
@@ -64,7 +64,7 @@ bool Contact:: input_info(int i)
 	if(i == NICK_NAME)
 		nickname = tmp;
 	if(i == PHONE_NUM)
-		phonenumber = tmp;/////数字のみにする
+		phonenumber = tmp;
 	if(i == DARKEST_SECRET)
 		darkestsecret = tmp;
 	return true;

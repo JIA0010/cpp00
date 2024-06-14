@@ -16,11 +16,11 @@ class	Contact
 	public:
 	Contact();
 	bool input_info(int i);
-	std::string get_firstname();
-	std::string get_lastname();
-	std::string get_nickname();
-	std::string get_phonenumber();
-	std::string get_darkestsecret();
+	std::string get_firstname() const;
+	std::string get_lastname() const;
+	std::string get_nickname() const;
+	std::string get_phonenumber() const;
+	std::string get_darkestsecret() const;
 };
 
 #endif
