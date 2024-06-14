@@ -56,7 +56,7 @@ void Contact:: input_info(int contact_index)
 		break;
 	}
 	std::string *assigned_member_array[] = \
-	{&firstname, &lastname, &nickname, &phonenumber, &darkestsecret};
+	{&m_firstname, &m_lastname, &m_nickname, &m_phonenumber, &m_darkestsecret};
 	*assigned_member_array[contact_index] = input;
 
 	// if(contact_index == FIRST_NAME)

@@ -7,11 +7,11 @@
 class	Contact
 {
 	private:
-	std::string firstname;//m_追加したりすることで、this->の手間が省ける
-	std::string lastname;
-	std::string nickname;
-	std::string phonenumber;
-	std::string darkestsecret;
+	std::string m_firstname;//m_追加したりすることで、this->の手間が省ける
+	std::string m_lastname;
+	std::string m_nickname;
+	std::string m_phonenumber;
+	std::string m_darkestsecret;
 
 	public:
 	Contact();

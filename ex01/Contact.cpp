@@ -4,25 +4,25 @@ Contact::Contact() {}
 
 std::string Contact::get_firstname() const
 {
-	return firstname;
+	return m_firstname;
 }
 
 std::string Contact::get_lastname() const
 {
-	return lastname;
+	return m_lastname;
 }
 
 std::string Contact::get_nickname() const
 {
-	return nickname;
+	return m_nickname;
 }
 
 std::string Contact::get_phonenumber() const
 {
-	return phonenumber;
+	return m_phonenumber;
 }
 
 std::string Contact::get_darkestsecret() const
 {
-	return darkestsecret;
+	return m_darkestsecret;
 }
