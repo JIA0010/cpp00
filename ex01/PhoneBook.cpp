@@ -58,17 +58,6 @@ void Contact:: input_info(int contact_index)
 	std::string *assigned_member_array[] = \
 	{&m_firstname, &m_lastname, &m_nickname, &m_phonenumber, &m_darkestsecret};
 	*assigned_member_array[contact_index] = input;
-
-	// if(contact_index == FIRST_NAME)
-	// 	firstname = input;
-	// if(contact_index == LAST_NAME)
-	// 	lastname = input;
-	// if(contact_index == NICK_NAME)
-	// 	nickname = input;
-	// if(contact_index == PHONE_NUM)
-	// 	phonenumber = input;
-	// if(contact_index == DARKEST_SECRET)
-	// 	darkestsecret = input;
 }
 
 
@@ -151,11 +140,3 @@ void PhoneBook::search()
 	std::cout << "Phone number: " << contact[index].get_phonenumber() << std::endl;
 	std::cout << "Darkest secret: " << contact[index].get_darkestsecret() << std::endl;
 }
-
-
-//issとは。→自作のstoi関数
-/*
-std::string をint に変換したい。
-std::input string stream を追えばいい
-std::istringstream iss(str);でissでstrを受け取る。iss = strと同じ
-*/
