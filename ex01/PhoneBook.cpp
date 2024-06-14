@@ -89,7 +89,7 @@ void PhoneBook::add()
 		std::cout << assigned_member_array[i] << std::endl;
 		contact[contact_num].input_info(i);
 	}
-	if(contact_size < 8)
+	if(contact_size < MAX_NUM)
 		contact_size++;
 	contact_num++;
 }
@@ -142,7 +142,7 @@ void PhoneBook::search()
 		else
 			continue;
 	}
-	int index = string_to_int(input);
+	int index = string_to_int(input);//ここを考慮する
 	if (index == -1)
 		return ;
 	std::cout << "First name: " << contact[index].get_firstname() << std::endl;
