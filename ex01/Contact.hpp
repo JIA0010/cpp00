@@ -7,7 +7,7 @@
 class	Contact
 {
 	private:
-	std::string firstname;
+	std::string firstname;//m_追加したりすることで、this->の手間が省ける
 	std::string lastname;
 	std::string nickname;
 	std::string phonenumber;
@@ -15,7 +15,7 @@ class	Contact
 
 	public:
 	Contact();
-	bool input_info(int i);
+	void input_info(int contact_index);
 	std::string get_firstname() const;
 	std::string get_lastname() const;
 	std::string get_nickname() const;

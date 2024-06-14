@@ -21,7 +21,7 @@ class PhoneBook
   private:
 	int contact_num;
 	int contact_size;
-	Contact contact[8];
+	Contact contact[MAX_NUM];
 	int	string_to_int(const std::string str);
   public:
 	PhoneBook();
@@ -29,7 +29,7 @@ class PhoneBook
 	void search();
 };
 
-void error_mes();
+void error_mes_with_exit();
 bool check_print(std::string tmp);
 
 #endif

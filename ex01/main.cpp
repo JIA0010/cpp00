@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 		std::cout << "cmd >";
 		std::getline(std::cin, cmd);
 		if (std::cin.eof() || std::cin.fail() || check_print(cmd) == false)
-			error_mes();
+			error_mes_with_exit();
 		if (cmd == "ADD")
 			phonebook.add();
 		else if (cmd == "SEARCH")

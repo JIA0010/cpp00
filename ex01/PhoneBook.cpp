@@ -1,31 +1,29 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook()
-{
-	contact_num = 0;
-	contact_size = 0;
-}
+PhoneBook::PhoneBook() : contact_num(0), contact_size(0) {}
 
-void error_mes()
+void error_mes_with_exit()
 {
 	std::cout << "error" << std::endl;
-	exit(1);
+	std::exit(0);
 }
 
+//印字可能であるかどうかを判定
 bool check_print(std::string str)
 {
 	char ch;
 	for(int i = 0; i < str.size(); i++)
 	{
 		ch = str[i];
-		if(isprint(ch) == 0)
+		if(std::isprint(ch) == 0)
 			return(false);
 	}
 
 	return true;
 }
 
-bool check_space(std::string str)
+//文字列にスペースが含まれているかどうかをチェック
+bool contains_non_space_char(std::string str)
 {
 	int i = 0;
 	if(str.empty())
@@ -35,7 +33,7 @@ bool check_space(std::string str)
 	}
 	while(str[i] != '\0')
 	{
-		if(!(str[i] == 0 || str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
+		if(std::isspace(str[i]) == 0)
 			return (true);
 		i++;
 	}
@@ -43,49 +41,52 @@ bool check_space(std::string str)
 		return (false);
 }
 
-bool Contact:: input_info(int i)
+#define SEARCH_PROMPT ">"
+void Contact:: input_info(int contact_index)
 {
-	int j = 0;
-	std::string tmp;
+	std::string input;
 	while(true)
 	{
-		std::cout << ">";
-		std::getline(std::cin, tmp);
-		if (std::cin.eof() || std::cin.fail() || check_print(tmp) == false)
-			error_mes();
-		if(check_space(tmp) == false)
+		std::cout << SEARCH_PROMPT;
+		std::getline(std::cin, input);
+		if (std::cin.eof() || std::cin.fail() || check_print(input) == false)
+			error_mes_with_exit();
+		if(contains_non_space_char(input) == false)
 			continue;
 		break;
 	}
-	if(i == FIRST_NAME)
-		firstname = tmp;
-	if(i == LAST_NAME)
-		lastname = tmp;
-	if(i == NICK_NAME)
-		nickname = tmp;
-	if(i == PHONE_NUM)
-		phonenumber = tmp;
-	if(i == DARKEST_SECRET)
-		darkestsecret = tmp;
-	return true;
+	std::string *assigned_member_array[] = \
+	{&firstname, &lastname, &nickname, &phonenumber, &darkestsecret};
+	*assigned_member_array[contact_index] = input;
+
+	// if(contact_index == FIRST_NAME)
+	// 	firstname = input;
+	// if(contact_index == LAST_NAME)
+	// 	lastname = input;
+	// if(contact_index == NICK_NAME)
+	// 	nickname = input;
+	// if(contact_index == PHONE_NUM)
+	// 	phonenumber = input;
+	// if(contact_index == DARKEST_SECRET)
+	// 	darkestsecret = input;
 }
 
 
 void PhoneBook::add()
 {
-	contact_num = contact_num % 8;
+	contact_num = contact_num % MAX_NUM;
+
+	std::string assigned_member_array[] = \
+	{   "----enter first name----",
+        "----enter last name----",
+        "----enter nickname----",
+        "----enter phone number----",
+        "----enter darkest secret----"
+	};
+
 	for (int i = 0; i < 5; i++)
 	{
-		if (i == FIRST_NAME)
-			std::cout << "----enter first name----" << std::endl;
-		if (i == LAST_NAME)
-			std::cout << "----enter last name----" << std::endl;
-		if (i == NICK_NAME)
-			std::cout << "----enter nickname----" << std::endl;
-		if (i == PHONE_NUM)
-			std::cout << "----enter phone number----" << std::endl;
-		if (i == DARKEST_SECRET)
-			std::cout << "----enter darkest secret----" << std::endl;
+		std::cout << assigned_member_array[i] << std::endl;
 		contact[contact_num].input_info(i);
 	}
 	if(contact_size < 8)
@@ -97,12 +98,13 @@ int	PhoneBook::string_to_int(const std::string str)
 {
 	int	result;
 
-	std::istringstream tmp(str);
-	if (!(tmp >> result))
+	std::istringstream input(str);
+	if (!(input >> result))
 		return (-1);
 	return (result);
 }
 
+// 文字列を十文字長にする
 std::string change_length(std::string str)
 {
 	if (str.length() < 10)
@@ -114,7 +116,7 @@ std::string change_length(std::string str)
 
 void PhoneBook::search()
 {
-	std::string tmp;
+	std::string input;
 	if (contact_size == 0)
 	{
 		std::cout << "There is no contact" << std::endl;
@@ -134,17 +136,20 @@ void PhoneBook::search()
 	while(true)
 	{
 		std::cout << "Enter index" << std::endl;
-		std::getline(std::cin, tmp);
-		if(tmp[0] >= '0' && tmp[0] < contact_size + ASCII_NUM && tmp.substr(1, 1).empty() && check_print(tmp) == true)
+		std::getline(std::cin, input);
+		if(input[0] >= '0' && input[0] < contact_size + ASCII_NUM && input.substr(1, 1).empty() && check_print(input) == true)
 			break;
 		else
 			continue;
 	}
-	std::cout << "First name: " << contact[string_to_int(tmp)].get_firstname() << std::endl;
-	std::cout << "Last name: " << contact[string_to_int(tmp)].get_lastname() << std::endl;
-	std::cout << "Nick name: " << contact[string_to_int(tmp)].get_nickname() << std::endl;
-	std::cout << "Phone number: " << contact[string_to_int(tmp)].get_phonenumber() << std::endl;
-	std::cout << "Darkest secret: " << contact[string_to_int(tmp)].get_darkestsecret() << std::endl;
+	int index = string_to_int(input);
+	if (index == -1)
+		return ;
+	std::cout << "First name: " << contact[index].get_firstname() << std::endl;
+	std::cout << "Last name: " << contact[index].get_lastname() << std::endl;
+	std::cout << "Nick name: " << contact[index].get_nickname() << std::endl;
+	std::cout << "Phone number: " << contact[index].get_phonenumber() << std::endl;
+	std::cout << "Darkest secret: " << contact[index].get_darkestsecret() << std::endl;
 }
 
 

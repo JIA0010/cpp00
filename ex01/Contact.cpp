@@ -1,13 +1,6 @@
 #include "Contact.hpp"
 
-Contact::Contact()
-{
-	firstname = "";
-	lastname = "";
-	nickname = "";
-	phonenumber = "";
-	darkestsecret = "";
-}
+Contact::Contact() {}
 
 std::string Contact::get_firstname() const
 {
