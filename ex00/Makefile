@@ -1,11 +1,12 @@
 NAME = megaphone
 SRCS = megaphone.cpp
+FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME):	$(OBJS) Makefile
-	@ c++ $(OBJS) -std=c++98 -o $(NAME)
+	@ c++ $(FLAGS) $(OBJS) -o $(NAME)
 	@ echo "compile done."
 
 clean:
