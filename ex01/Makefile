@@ -6,7 +6,7 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME):	$(OBJS) Makefile
-	@ g++ $(OBJS) -o $(NAME)
+	@ c++ $(FLAGS) $(OBJS) -o $(NAME)
 	@ echo "compile done."
 
 clean:

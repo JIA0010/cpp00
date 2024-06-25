@@ -113,7 +113,7 @@ void PhoneBook::search()
 		std::cout << "There is no contact" << std::endl;
 		return ;
 	}
-	std::cout << "Index      First name Last name  Nick name" << std::endl;
+	std::cout << "     Index|First name| Last name| Nick name" << std::endl;
 	std::cout << "-------------------------------------------" << std::endl;
 	for (int i = 0; i < contact_size; i++)
 	{
@@ -127,6 +127,8 @@ void PhoneBook::search()
 	{
 		std::cout << "Enter index" << std::endl;
 		std::getline(std::cin, input);
+		if (std::cin.eof() || std::cin.fail() || check_print(input) == false)
+			error_mes_with_exit();
 		if (input[0] >= '0' && input[0] < contact_size + ASCII_NUM
 			&& input.substr(1, 1).empty() && check_print(input) == true)
 			break ;

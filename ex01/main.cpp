@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
 	std::string cmd;
 	if (argc != 1)
 	{
-		std::cout << "usage: ./megaphone";
+		std::cout << "usage: ./phonebook";
 		return (1);
 	}
 	while (true)
